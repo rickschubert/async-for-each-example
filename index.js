@@ -1,13 +1,13 @@
-const promiseTakes2000ms = (number) => {
+const promiseTakes500ms = (number) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             console.log(number)
             resolve(number)
-        }, 2000)
+        }, 500)
     })
 }
 
-const callFunctionOnEachArrayElementInBatches = async (array, callback) => {
+const asyncForEach = async (array, callback) => {
     console.log(`Starting to execute ${array.length} promises`)
     while (array.length > 0) {
         console.log("=== Waiting for the batch to be resolved")
@@ -19,8 +19,8 @@ const callFunctionOnEachArrayElementInBatches = async (array, callback) => {
 }
 
 const main = () => {
-    const array = [...Array(40).keys()]
-    callFunctionOnEachArrayElementInBatches(array, promiseTakes2000ms)
+    const array = [...Array(100).keys()]
+    asyncForEach(array, promiseTakes500ms)
 }
 
 main()
